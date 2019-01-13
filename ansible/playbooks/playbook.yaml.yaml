@@ -1,4 +1,3 @@
-#Jenkins playbook to install and configure the Jenkins server
 - hosts: localhost
   vars:
     jenkins_hostname: myjenkins
