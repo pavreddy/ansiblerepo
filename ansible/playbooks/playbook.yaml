@@ -1,7 +1,7 @@
 #Jenkins playbook to install and configure the Jenkins server
 - hosts: localhost
   vars:
-    jenkins_hostname: myjenkins
+    jenkins_hostname: localhost
   roles:
           #- role: geerlingguy.java
           #become: yes
