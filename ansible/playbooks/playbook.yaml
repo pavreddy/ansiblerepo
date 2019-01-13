@@ -1,0 +1,8 @@
+- hosts: localhost
+  vars:
+    jenkins_hostname: myjenkins
+  roles:
+          #- role: geerlingguy.java
+          #become: yes
+    - role: ansible-role-jenkins
+      become: yes
