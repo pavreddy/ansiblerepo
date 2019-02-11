@@ -1,0 +1,55 @@
+node {
+
+stage '1. git clone'
+
+git 'https://github.com/pavreddy/DevOps-Training.git'
+    
+    sh 'java -version'
+
+stage '2. Maven Clean'
+sh 'mvn clean'
+
+stage '3. compile'
+sh 'mvn compile'
+
+stage '4 test'
+sh 'mvn test'
+
+stage '5 package'
+sh 'mvn package'
+
+stage '6. artifacts'
+archiveArtifacts 'target/*.war'
+
+stage '7. SonarQube code analysis' 
+
+sh 'mvn sonar:sonar \
+  -Dsonar.projectKey=pavreddy_DevOps-Training \
+  -Dsonar.organization=pavreddy-github \
+  -Dsonar.host.url=https:\\sonarcloud.io \
+  -Dsonar.login=5bafd4b3d016c9de0ec2a2205aea3324e3578d90'
+  
+
+sh 'ls -l target/*.war'
+sh 'sleep 20'
+sh 'ls -l target/*.war'
+
+stage '8. Nexus upload'
+sh 'curl -v -u admin:admin123 --upload-file target/*.war http://3.86.242.224:8081/nexus/content/repositories/releases/'
+
+}
+
+
+node ('Webserver') {
+//node ('Jbossserver') {
+    
+stage 'Download *.war from Nexus'
+sh 'curl -O http://3.86.242.224:8081/nexus/content/repositories/releases/DevOps-Training.war'
+input 'Pipeline has paused and needs your input before proceeding' 
+
+stage 'deploy war on WebServer node' 
+sh 'sudo cp DevOps-Training.war /opt/tomcat/apache-tomcat-8.0.53/webapps/' 
+//sh 'sudo cp DevOps-Training.war /opt/jboss/standalone/deployments/'
+
+    
+}
