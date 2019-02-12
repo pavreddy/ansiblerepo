@@ -64,3 +64,6 @@
 
 # Update Jenkins and install configured plugins.
 - include_tasks: plugins.yml
+
+- name: Make jenkins user to shell access /bin/bash
+  command: sudo su -s /bin/bash jenkins
