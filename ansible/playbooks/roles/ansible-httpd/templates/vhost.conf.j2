@@ -23,3 +23,25 @@
  </Location>
 
 </VirtualHost>
+
+<VirtualHost {{ ansible_eth0.ipv4.address }}:443>
+  ServerName tomcatserver
+
+  ProxyRequests Off
+  ProxyPreserveHost On
+
+  #ProxyPass / http://localhost:{{ tomcat_port }}/DevOps-Training/
+  #ProxyPassReverse / http://localhost:{{ tomcat_port }}/DevOps-Training/
+
+  <Location />
+      ProxyPass "http://{{ ansible_fqdn }}:{{ tomcat_port }}/DevOps-Training/"
+      ProxyPassReverse "http://{{ ansible_fqdn }}:{{ tomcat_port }}/DevOps-Training/"
+  </Location>
+ 
+
+ <Location "/">
+ Order allow,deny
+ Allow from all
+ </Location>
+
+</VirtualHost>
