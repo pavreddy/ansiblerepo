@@ -67,7 +67,7 @@
 #     name: jboss
 #     enabled: yes
 #     state: started
-    
+
 - name: "JBoss systemd wrapper for sysvinit script"
   template:
     src: jboss.sysvinit.service.j2
@@ -81,4 +81,4 @@
   service:
     name: "{{ jboss_service }}"
     state: started
-enabled: 'yes
+  enabled: 'yes
