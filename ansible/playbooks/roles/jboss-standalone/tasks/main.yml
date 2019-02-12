@@ -81,4 +81,4 @@
   service:
     name: "{{ jboss_service }}"
     state: started
-  enabled: 'yes
+    enabled: 'yes
