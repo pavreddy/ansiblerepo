@@ -1,4 +1,4 @@
-node {
+pipeline {
 
     environment {
         PATH = "/usr/local/bin:/usr/bin:/opt/apache-maven-3.6.0/bin:/opt/apache-maven-3.6.0/bin:/usr/local/sbin:${env.PATH}"
@@ -47,14 +47,14 @@ stage '8. Nexus upload'
 }
 
 
-node ('Webserver') {
+//node ('Webserver') {
 //node ('Jbossserver') {
     
-stage 'Download *.war from Nexus'
+stage '9. Download *.war from Nexus'
 sh 'curl -O http://3.86.242.224:8081/nexus/content/repositories/releases/DevOps-Training.war'
 input 'Pipeline has paused and needs your input before proceeding' 
 
-stage 'deploy war on WebServer node' 
+stage '10. deploy war on WebServer node' 
 sh 'sudo cp DevOps-Training.war /opt/tomcat/apache-tomcat-8.0.53/webapps/' 
 //sh 'sudo cp DevOps-Training.war /opt/jboss/standalone/deployments/'
 
