@@ -3,7 +3,7 @@
 #  
 
 <VirtualHost {{ ansible_eth0.ipv4.address }}:80>
-  ServerName {{ app_dns_url }}
+  ServerName tomcatserver
 
   ProxyRequests Off
   ProxyPreserveHost On
