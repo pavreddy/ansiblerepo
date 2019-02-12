@@ -13,7 +13,7 @@ def test_jboss_running_and_enabled(host):
 
 
 def test_jboss_listening_http(host):
-    socket = host.socket('tcp://0.0.0.0:8080')
+    socket = host.socket('tcp://0.0.0.0:8082')
 
     assert socket.is_listening
 
