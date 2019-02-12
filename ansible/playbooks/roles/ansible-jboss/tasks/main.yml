@@ -99,6 +99,14 @@
     mode: 0644
   when: ansible_service_mgr == "systemd"
 
+- name: Update JBoss home dir perm again....
+  file:
+    dest: "{{ jboss_home }}"
+    owner: "{{ jboss_user }}"
+    group: "{{ jboss_group }}"
+    recurse: yes
+    mode: 0755
+    
 - name: JBoss service
   service:
     name: "{{ jboss_service }}"
