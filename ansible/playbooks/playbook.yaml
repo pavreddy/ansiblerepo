@@ -7,3 +7,5 @@
           #become: yes
     - role: ansible-jenkins
       become: yes
+    - role: ansible-maven
+      become: yes
