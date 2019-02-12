@@ -50,3 +50,5 @@
   when: jenkins_admin_password != ""
   notify: restart jenkins
   tags: ['skip_ansible_lint']
+  ignore_errors: yes
+  
