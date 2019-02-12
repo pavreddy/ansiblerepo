@@ -6,41 +6,41 @@ node {
 	
 stage '1. git clone'
 
-git 'https://github.com/pavreddy/DevOps-Training.git'
+    git 'https://github.com/pavreddy/DevOps-Training.git'
     
     sh 'java -version'
 	
 
 stage '2. Maven Clean'
-sh 'mvn clean'
+    sh 'mvn clean'
 
 stage '3. compile'
-sh 'mvn compile'
+    sh 'mvn compile'
 
 stage '4 test'
-sh 'mvn test'
+    sh 'mvn test'
 
 stage '5 package'
-sh 'mvn package'
+    sh 'mvn package'
 
 stage '6. artifacts'
-archiveArtifacts 'target/*.war'
+    archiveArtifacts 'target/*.war'
 
 stage '7. SonarQube code analysis' 
 
-sh 'mvn sonar:sonar \
-  -Dsonar.projectKey=pavreddy_DevOps-Training \
-  -Dsonar.organization=pavreddy-github \
-  -Dsonar.host.url=https:\\sonarcloud.io \
-  -Dsonar.login=5bafd4b3d016c9de0ec2a2205aea3324e3578d90'
+   sh 'mvn sonar:sonar \
+      -Dsonar.projectKey=pavreddy_DevOps-Training \
+      -Dsonar.organization=pavreddy-github \
+      -Dsonar.host.url=https:\\sonarcloud.io \
+      -Dsonar.login=5bafd4b3d016c9de0ec2a2205aea3324e3578d90'
   
 
-sh 'ls -l target/*.war'
-sh 'sleep 20'
-sh 'ls -l target/*.war'
+  sh 'ls -l target/*.war'
+  sh 'sleep 20'
+  sh 'ls -l target/*.war'
 
 stage '8. Nexus upload'
-sh 'curl -v -u admin:admin123 --upload-file target/*.war http://3.86.242.224:8081/nexus/content/repositories/releases/'
+  sh 'curl -v -u admin:admin123 --upload-file target/*.war http://3.86.242.224:8081/nexus/content/repositories/releases/'
 
 
 }
