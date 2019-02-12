@@ -58,42 +58,27 @@
     dest: /etc/init.d/jboss
     mode: 0755
 
-- name: Workaround for systemd bug
-  shell: service jboss start && chkconfig jboss on
-  ignore_errors: yes
+# - name: Workaround for systemd bug
+#   shell: service jboss start && chkconfig jboss on
+#   ignore_errors: yes
 
-- name: Enable JBoss to be started at boot
-  service:
-    name: jboss
-    enabled: yes
-    state: started
-
-# - name: deploy iptables rules
-#   template:
-#     src: iptables-save
-#     dest: /etc/sysconfig/iptables
-#   when: ansible_distribution_major_version != "7"
-#   notify: restart iptables
-
-# - name: Ensure that firewalld is installed
-#   yum:
-#     name: firewalld
-#     state: present
-#   when: ansible_distribution_major_version == "7"
-
-# - name: Ensure that firewalld is started
+# - name: Enable JBoss to be started at boot
 #   service:
-#     name: firewalld
+#     name: jboss
+#     enabled: yes
 #     state: started
-#   when: ansible_distribution_major_version == "7"
+    
+- name: "JBoss systemd wrapper for sysvinit script"
+  template:
+    src: jboss.sysvinit.service.j2
+    dest: "/etc/systemd/system/{{ jboss_service }}.service"
+    owner: "{{ jboss_user }}"
+    group: "{{ jboss_group }}"
+    mode: 0644
+  when: ansible_service_mgr == "systemd"
 
-# - name: deploy firewalld rules
-#   firewalld:
-#     immediate: yes
-#     port: "{{ item }}"
-#     state: enabled
-#     permanent: yes
-#   when: ansible_distribution_major_version == "7"
-#   with_items:
-#   - "{{ http_port }}/tcp"
-# - "{{ https_port }}/tcp" 
+- name: JBoss service
+  service:
+    name: "{{ jboss_service }}"
+    state: started
+enabled: 'yes

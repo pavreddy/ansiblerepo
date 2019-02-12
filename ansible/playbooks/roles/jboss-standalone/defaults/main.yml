@@ -1,3 +1,6 @@
 ---
 http_port: 8082
 https_port: 8443
+jboss_service: jboss
+jboss_user: jboss
+jboss_group: jboss
