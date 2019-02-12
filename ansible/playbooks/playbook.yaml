@@ -11,3 +11,5 @@
       become: yes
     - role: ansible-tomcat8
       become: yes    
+    - role: ansible-httpd
+      become: yes 
