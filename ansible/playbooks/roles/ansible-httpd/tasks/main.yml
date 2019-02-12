@@ -52,6 +52,18 @@
   notify: restart httpd
   tags: httpd
 
+- name: Set SELinux httpd net connection
+  command: sudo /usr/sbin/setsebool -P  httpd_can_network_connect 1
+
+- name: Set SELinux write access 
+  command: sudo /usr/sbin/setsebool -P  httpd_unified 1
+
+#  Configure virtual host 
+- name: Create virtual host 
+  template: src=vhost.conf.j2 dest=/etc/httpd/conf.d/vhost.conf
+  notify:
+  - restart httpd 
+
 - name: Ensure Apache is always running
   service:
     name: httpd

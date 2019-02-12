@@ -9,6 +9,7 @@ httpd_error_log_ssl: logs/ssl_error_log
 httpd_extended_status: 'On'
 httpd_listen: 80
 httpd_listen_ssl: 443
+tomcat_port: 8081
 httpd_log_level: warn
 httpd_log_level_ssl: warn
 httpd_server_admin: root@localhost

@@ -1,0 +1,25 @@
+# Proxy for tomcat on apache 
+# apache 2.4 
+#  
+
+<VirtualHost {{ ansible_eth0.ipv4.address }}:80>
+  ServerName {{ app_dns_url }}
+
+  ProxyRequests Off
+  ProxyPreserveHost On
+
+  #ProxyPass / http://localhost:{{ tomcat_port }}/DevOps-Training/
+  #ProxyPassReverse / http://localhost:{{ tomcat_port }}/DevOps-Training/
+
+  <Location />
+      ProxyPass "http://{{ ansible_fqdn }}:{{ tomcat_port }}/DevOps-Training/"
+      ProxyPassReverse "http://{{ ansible_fqdn }}:{{ tomcat_port }}/DevOps-Training/"
+  </Location>
+ 
+
+ <Location "/">
+ Order allow,deny
+ Allow from all
+ </Location>
+
+</VirtualHost>
