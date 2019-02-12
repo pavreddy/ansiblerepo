@@ -9,6 +9,19 @@
    - libselinux-python
    - libsemanage-python
 
+- name: Download JDK
+  get_url:
+    url: http://download.oracle.com/otn-pub/java/jdk/7/jdk-7-linux-x64.tar.gz
+    headers: "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com"
+    dest: /tmp/jdk-7-linux-x64.tar.gz
+
+- name: Extract JDK tarball
+  unarchive:
+    src: /tmp/jdk-7-linux-x64.tar.gz
+    dest: /opt
+    creates: /opt/jdk1.7/
+    remote_src: 'yes'
+
 - name: Download JBoss from jboss.org
   get_url:
     url: http://download.jboss.org/jbossas/7.1/jboss-as-7.1.1.Final/jboss-as-7.1.1.Final.zip
