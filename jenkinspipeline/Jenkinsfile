@@ -5,6 +5,11 @@ pipeline {
     }
 	        
 	 stages {
+	    stage("Git Clone"){
+		  steps {
+		    git 'https://github.com/pavreddy/DevOps-Training.git'
+			}
+		}	
         stage("Maven Build") {
           steps {
 		  
