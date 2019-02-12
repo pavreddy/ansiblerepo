@@ -1,10 +1,30 @@
+
 node {
 
+environment {
+        MAVEN_HOME = tool('M3')
+    }
+agent any
+    tools {
+        maven 'Maven 3.3.9'
+        
+    }
+    stages {
+        stage ('Initialize') {
+            steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                '''
+            }
+        }
+		
 stage '1. git clone'
 
 git 'https://github.com/pavreddy/DevOps-Training.git'
     
     sh 'java -version'
+	
 
 stage '2. Maven Clean'
 sh 'mvn clean'
@@ -38,7 +58,7 @@ stage '8. Nexus upload'
 sh 'curl -v -u admin:admin123 --upload-file target/*.war http://3.86.242.224:8081/nexus/content/repositories/releases/'
 
 }
-
+}
 
 node ('Webserver') {
 //node ('Jbossserver') {
