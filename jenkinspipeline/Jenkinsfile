@@ -44,7 +44,7 @@ stage '8. Nexus upload'
   sh 'curl -v -u admin:admin123 --upload-file target/*.war http://3.86.242.224:8081/nexus/content/repositories/releases/'
 
 
-}
+
 
 
 //node ('Webserver') {
