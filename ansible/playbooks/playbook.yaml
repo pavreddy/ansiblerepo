@@ -9,3 +9,5 @@
       become: yes
     - role: ansible-maven
       become: yes
+    - role: ansible-tomcat8
+      become: yes    
