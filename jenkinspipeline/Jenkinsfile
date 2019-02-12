@@ -3,6 +3,19 @@ node {
     environment {
         PATH = "/usr/local/bin:/usr/bin:/opt/apache-maven-3.6.0/bin:/opt/apache-maven-3.6.0/bin:/usr/local/sbin:${env.PATH}"
     }
+	tools {
+        maven 'Maven 3.6.0'
+        jdk '1.8.0_191'
+    }
+	stages {
+        stage 'Initialize' {
+            
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                '''
+            }
+        
 	
 stage '1. git clone'
 
@@ -43,6 +56,7 @@ stage '8. Nexus upload'
   sh 'curl -v -u admin:admin123 --upload-file target/*.war http://3.86.242.224:8081/nexus/content/repositories/releases/'
 
 
+}
 }
 
 node ('Webserver') {
