@@ -1,5 +1,5 @@
 pipeline {
-
+    agent any
     environment {
         PATH = "/usr/local/bin:/usr/bin:/opt/apache-maven-3.6.0/bin:/opt/apache-maven-3.6.0/bin:/usr/local/sbin:${env.PATH}"
     }
