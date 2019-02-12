@@ -4,4 +4,4 @@ https_port: 8443
 jboss_service: jboss
 jboss_user: jboss
 jboss_group: jboss
-jboss_java_home: /opt/jdk1.8.0_161/
+jboss_java_home: /opt/jdk1.8.0_201/

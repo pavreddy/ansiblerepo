@@ -13,7 +13,7 @@
 
 # Load Java configuration.
 [ -r /etc/java/java.conf ] && . /etc/java/java.conf
-export JAVA_HOME=/opt/jdk1.8.0_161/
+export JAVA_HOME=/opt/jdk1.8.0_201/
 
 ##
 # Set the JBoss user
