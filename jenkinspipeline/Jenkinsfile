@@ -28,10 +28,15 @@ pipeline {
              archiveArtifacts 'target/*.war'
            }
 		}
-	    stage("Deploy Warfile"){
+	    stage("Tomcat Deploy"){
 	      steps {
-	        sh 'sudo cp target/DevOps-Training.war /opt/apache-tomcat-8.5.28/webapps/' 
+	        sh 'sudo cp target/DevOps-Training.war /opt/apache-tomcat-8.5.28/webapps/'
 	      }
 	    }
+	    stage("Jboss Deploy"){
+	      steps {
+	        sh 'sudo cp target/DevOps-Training.war /opt/wildfly/standalone/deployments/'
+	      }
+	    }	    
 	}
 }

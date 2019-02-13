@@ -13,5 +13,7 @@
       become: yes    
     - role: ansible-httpd
       become: yes 
-    - role: ansible-jboss
+    - role: ansible-role-jboss
       become: yes 
+    # - role: ansible-jboss
+    #   become: yes
