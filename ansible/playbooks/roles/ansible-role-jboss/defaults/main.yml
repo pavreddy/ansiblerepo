@@ -1,9 +1,9 @@
 ---
 jboss_java_home: /opt/jdk1.8.0_161/
 jboss_home: /opt/wildfly
-jboss_user: wildfly
-jboss_group: wildfly
-jboss_service: wildfly
+jboss_user: jboss
+jboss_group: jboss
+jboss_service: jboss
 jboss_install_src: http://download.jboss.org/wildfly/10.1.0.Final/wildfly-10.1.0.Final.tar.gz
 jboss_config: standalone.xml
 jboss_mode: standalone
